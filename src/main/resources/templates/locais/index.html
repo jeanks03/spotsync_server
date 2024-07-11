@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<title layout:fragment="titulo">TVON App - Locais</title>
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<div class="container">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Nome</th>
+						<th>Observações</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="local : ${locais}">
+						<td th:text="${local.id}"></td>
+						<td th:text="${local.nome}"></td>
+						<td th:text="${local.descricao}"></td>
+						<td colspan="2"><a class="btn btn-info btn-sm"
+							href="/cargos/editar/1" role="button"> <span
+								class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						</a>
+							<button type="button" class="btn btn-danger btn-sm">
+								<span class="oi oi-circle-x" title="Exclusão desabilitada"
+									aria-hidden="true"></span>
+							</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</body>
+</html>
