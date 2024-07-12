@@ -5,21 +5,21 @@
 	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title layout:fragment="titulo">TVON App - Locais</title>
+<title layout:fragment="titulo">TVON App - Tipos de Players</title>
 </head>
 <body>
 
 	<section class="layout-content" layout:fragment="corpo">
 		<div class="container">
 			<form
-				th:action="${local.id == null} ? @{/locais/add} : @{/locais/edit}"
-				th:object="${local}"
+				th:action="${tipoPlayer.id == null} ? @{/tipos-players/add} : @{/tipos-players/edit}"
+				th:object="${tipoPlayer}"
 				method="POST">
 				<input type="hidden" id="id" th:field="*{id}" />
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label class="form-label" for="nome">Local</label> <input type="text"
-							class="form-control" id="nome" placeholder="Nome do local"
+						<label class="form-label" for="nome">Nome</label> <input type="text"
+							class="form-control" id="nome" placeholder="Nome do tipo"
 							autofocus="autofocus" th:field="*{nome}" />
 					</div>
 				</div>

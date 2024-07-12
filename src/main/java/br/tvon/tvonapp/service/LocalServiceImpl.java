@@ -32,15 +32,16 @@ public class LocalServiceImpl implements LocalService{
 	@Override
 	@Transactional(readOnly = false)
 	public void editar(Local local) {
-		// TODO Auto-generated method stub
+		repository.save(local);
 		
 	}
 
 	@Override
 	@Transactional(readOnly = false)
 	public void excluir(Integer id) {
-		// TODO Auto-generated method stub
-		
+		Local l = repository.findById(id).orElse(null);
+		repository.delete(l);
+	
 	}
 
 	@Override

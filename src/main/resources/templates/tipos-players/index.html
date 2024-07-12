@@ -5,7 +5,7 @@
 	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title layout:fragment="titulo">TVON App - Locais</title>
+<title layout:fragment="titulo">TVON App - Tipos de players</title>
 </head>
 <body>
 
@@ -21,20 +21,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="local : ${locais}">
-						<td th:text="${local.id}"></td>
-						<td th:text="${local.nome}"></td>
+					<tr th:each="tipoPlayer : ${tiposPlayers}">
+						<td th:text="${tipoPlayer.id}"></td>
+						<td th:text="${tipoPlayer.nome}"></td>
 						<td>
 							<button type="button" class="btn btn-secondary btn-sm"
 								data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
-								th:attr="data-bs-content=${local.descricao}">
+								th:attr="data-bs-content=${tipoPlayer.descricao}">
 								<i class="fa-solid fa-eye"></i>
 							</button>
 						</td>
 						<td colspan="2"
-							th:with="urlExcluir=@{/locais/{id}/delete (id=${local.id})}"><a
+							th:with="urlExcluir=@{/tipos-players/{id}/delete (id=${tipoPlayer.id})}"><a
 							class="btn btn-info btn-sm"
-							th:href="@{/locais/{id}/edit (id=${local.id})}" role="button">
+							th:href="@{/tipos-players/{id}/edit (id=${tipoPlayer.id})}" role="button">
 								<i class="fa-solid fa-pen-to-square"></i>
 						</a>
 							<button th:id="${'btn-excluir_' + urlExcluir }" type="button"

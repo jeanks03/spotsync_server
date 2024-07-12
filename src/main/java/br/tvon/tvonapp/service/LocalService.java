@@ -9,6 +9,7 @@ public interface LocalService {
 	public void salvar(Local local);
 	
 	public Local procuraPorId(Integer id);
+	
 	public List<Local> buscaTodos();
 	
 	public void editar(Local local);
