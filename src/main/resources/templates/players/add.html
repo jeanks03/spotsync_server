@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+<title layout:fragment="titulo">TVON App -  Players</title>
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<div class="container">
+			<form
+				th:action="${player.id == null} ? @{/players/add} : @{/players/edit}"
+				th:object="${player}"
+				method="POST">
+				<input type="hidden" id="id" th:field="*{id}" />
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="form-label" for="patrimonio">Patrimônio</label> <input type="text"
+							class="form-control" id="patrimonio" placeholder="nº de patrimônio"
+							th:classappend="${#fields.hasErrors('patrimonio')} ? 'is-invalid'"
+							autofocus="autofocus" th:field="*{patrimonio}" />
+							<div class="invalid-feedback" th:errors="*{patrimonio}"></div>
+					</div>
+				</div>
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="form-label" for="tipoPlayer">Tipo do Player</label> <select
+							class="form-control" id="patrimonio" 
+							th:classappend="${#fields.hasErrors('tipoPlayer')} ? 'is-invalid'"
+							autofocus="autofocus" th:field="*{tipoPlayer}" >
+							<option value="">Selecione...</option>
+							<option th:each="tp : ${tiposPlayers}"
+								th:value="${tp.id}" th:text="${tp.nome}"></option>
+							</select>
+							<div class="invalid-feedback" th:errors="*{tipoPlayer}"></div>
+					</div>
+				</div>
+				
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="form-label" for="local">Local</label> <select
+							class="form-control" id="local" 
+							th:classappend="${#fields.hasErrors('local')} ? 'is-invalid'"
+							autofocus="autofocus" th:field="*{local}" >
+							<option value="">Selecione...</option>
+							<option th:each="l : ${locais}"
+								th:value="${l.id}" th:text="${l.nome}"></option>
+							</select>
+							<div class="invalid-feedback" th:errors="*{local}"></div>
+					</div>
+				</div>
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="observacoes" class="form-label">Observações</label>
+						<textarea class="form-control" id="observacoes"
+							placeholder="Descrição" autofocus="autofocus"
+							th:field="*{observacoes}"></textarea>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

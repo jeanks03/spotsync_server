@@ -5,7 +5,7 @@
 	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title layout:fragment="titulo">TVON App - Locais</title>
+<title layout:fragment="titulo">TVON App - Players</title>
 </head>
 <body>
 
@@ -15,37 +15,41 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Nome</th>
+						<th>Patrimônio</th>
+						<th>Tipo</th>
+						<th>Local</th>
 						<th>Observações</th>
 						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="local : ${locais}">
-						<td th:text="${local.id}"></td>
-						<td th:text="${local.nome}"></td>
+					<tr th:each="player : ${players}">
+						<td th:text="${player.id}"></td>
+						<td th:text="${player.patrimonio}"></td>
+						<td th:text="${player.tipoPlayer.nome}"></td>
+						<td th:text="${player.local.nome}"></td>
 						<td>
 							<button type="button" class="btn btn-secondary btn-sm"
 								data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
-								th:attr="data-bs-content=${local.descricao}">
+								th:attr="data-bs-content=${player.observacoes}">
 								<i class="fa-solid fa-eye"></i>
 							</button>
 						</td>
 						<td colspan="2"
-							th:with="urlExcluir=@{/locais/delete}"><a
+							th:with="urlExcluir=@{/players/delete}"><a
 							class="btn btn-info btn-sm"
-							th:href="@{/locais/{id}/edit (id=${local.id})}" role="button">
+							th:href="@{/players/{id}/edit (id=${player.id})}" role="button">
 								<i class="fa-solid fa-pen-to-square"></i>
 						</a>
 							<button th:id="${'btn-excluir_' + urlExcluir }" type="button"
-								class="btn btn-danger btn-sm" th:attr="data-local=${local.nome}, data-idlocal=${local.id}">
+								class="btn btn-danger btn-sm" th:attr="data-player=${player.patrimonio}, data-idplayer=${player.id}" 
+								>
 								<i class="fa-solid fa-trash"></i>
 							</button></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		
 		<script type="text/javascript">
 	$(document).ready(function(){
 		var url = '';
@@ -56,8 +60,8 @@
 		
 		$('button[id*=btn-excluir_]').click(function(){
 			url = "http://localhost:8080" + $(this).attr('id').split("_")[1];
-			var confirma = confirm("Deseja exluir local " + $(this).data('local') + "?");
-			var id = $(this).data('idlocal');
+			var confirma = confirm("Deseja exluir tipo " + $(this).data('player') + "?");
+			var id = $(this).data('idplayer');
 			
 			if(confirma) {
 				var data = { id : id };

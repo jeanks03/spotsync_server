@@ -13,12 +13,19 @@
 <link rel="icon" th:href="@{/image/favicon.jpg}" />
 
 <!-- Bootstrap core CSS -->
-<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
-<link rel="stylesheet" th:href="@{/webjars/font-awesome/6.0.0/css/all.min.css}">
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	th:href="@{/webjars/font-awesome/6.0.0/css/all.min.css}">
 
 <!-- Custom styles for this template -->
 <link th:href="@{/css/tvonapp.css}" rel="stylesheet" />
 <title layout:fragment="titulo">Insert title here</title>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 <body>
 	<header th:replace="~{fragments/header :: header}">Header</header>
@@ -29,7 +36,7 @@
 				<span>menu</span>
 			</nav>
 		</aside>
-		
+
 		<section layout:fragment="corpo">
 			<div>conteudo principal das páginas</div>
 		</section>
@@ -38,36 +45,8 @@
 	<footer th:replace="~{fragments/footer :: rodape}">
 		<div>footer</div>
 	</footer>
-	<div th:replace="~{fragments/modal :: modal}"></div>
-	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
-	<script	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		var url = '';
-		
-		$(function() {
-			$('[data-bs-toggle="popover"]').popover();
-		});
-		
-		$('button[id*=btn-excluir_]').click(function(){
-			url = "http://localhost:8080" + $(this).attr('id').split("_")[1];
-			
-		});
-		
-		$('#ok_confirm').click(function() {
-			$.post(url, function(response){
-				console.log(response);
-				var json = JSON.parse(response);
-				alert("Excluído com sucesso!");
-				window.location.reload();
-			}).fail(function(){
-				alert("Erro ao excluir");
-			});
-		});
-	});
-	
-	</script>
+
+
+
 </body>
 </html>

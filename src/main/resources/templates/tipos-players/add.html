@@ -20,7 +20,9 @@
 					<div class="form-group col-md-6">
 						<label class="form-label" for="nome">Nome</label> <input type="text"
 							class="form-control" id="nome" placeholder="Nome do tipo"
+							th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"
 							autofocus="autofocus" th:field="*{nome}" />
+							<div class="invalid-feedback" th:errors="*{nome}"></div>
 					</div>
 				</div>
 				<div class="form-row">

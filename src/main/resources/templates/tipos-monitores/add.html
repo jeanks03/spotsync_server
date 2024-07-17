@@ -5,25 +5,24 @@
 	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title layout:fragment="titulo">TVON App - Locais</title>
+<title layout:fragment="titulo">TVON App - Tipos de Monitores</title>
 </head>
 <body>
 
 	<section class="layout-content" layout:fragment="corpo">
 		<div class="container">
 			<form
-				th:action="${local.id == null} ? @{/locais/add} : @{/locais/edit}"
-				th:object="${local}" method="POST">
+				th:action="${tipoMonitor.id == null} ? @{/tipos-monitores/add} : @{/tipos-monitores/edit}"
+				th:object="${tipoMonitor}"
+				method="POST">
 				<input type="hidden" id="id" th:field="*{id}" />
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label class="form-label" for="nome">Local</label> <input
-							type="text" class="form-control" id="nome"
-							placeholder="Nome do local"
+						<label class="form-label" for="nome">Nome</label> <input type="text"
+							class="form-control" id="nome" placeholder="Nome do tipo"
 							th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"
 							autofocus="autofocus" th:field="*{nome}" />
-						<div class="invalid-feedback" th:errors="*{nome}"></div>
-
+							<div class="invalid-feedback" th:errors="*{nome}"></div>
 					</div>
 				</div>
 				<div class="form-row">

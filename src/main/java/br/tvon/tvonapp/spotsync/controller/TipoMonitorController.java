@@ -16,59 +16,59 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.tvon.tvonapp.service.TipoPlayerService;
-import br.tvon.tvonapp.spotsync.entities.TipoPlayer;
+import br.tvon.tvonapp.service.TipoMonitorService;
+import br.tvon.tvonapp.spotsync.entities.TipoMonitor;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/tipos-players")
-public class TipoPlayerController {
+@RequestMapping("/tipos-monitores")
+public class TipoMonitorController {
 	
 	@Autowired
-	TipoPlayerService service;
+	TipoMonitorService service;
 	
 	
 	@GetMapping(value = {"/",""})
 	public ModelAndView index() {
-		List<TipoPlayer> tipos = service.buscaTodos();
-		ModelAndView mv = new ModelAndView("/tipos-players/index");
-		mv.addObject("tiposPlayers", tipos);
+		List<TipoMonitor> tipos = service.buscaTodos();
+		ModelAndView mv = new ModelAndView("/tipos-monitores/index");
+		mv.addObject("tiposMonitores", tipos);
 		return mv;
 		
 	}
 	
 	@GetMapping("/add")
-	public ModelAndView adicionarTipoPlayer(TipoPlayer tipoPlayer) {
-		ModelAndView mv = new ModelAndView("/tipos-players/add");
+	public ModelAndView adicionarTipoMonitor(TipoMonitor tipoMonitor) {
+		ModelAndView mv = new ModelAndView("/tipos-monitores/add");
 		return mv;
 	}
 	
 	@PostMapping("/add")
-	public String adicionarTipoPlayer(@Valid TipoPlayer tipoPlayer, BindingResult result, RedirectAttributes attr) {
+	public String adicionarTipoMonitor(@Valid TipoMonitor tipoMonitor, BindingResult result, RedirectAttributes attr) {
 		if(result.hasErrors()) {
-			return "/tipos-players/add";
+			return "/tipos-monitores/add";
 		}
-		service.salvar(tipoPlayer);
+		service.salvar(tipoMonitor);
 		attr.addFlashAttribute("success", "Tipo salvo com sucesso!");
-		return "redirect:/tipos-players";
+		return "redirect:/tipos-monitores";
 	}
 	
 	@GetMapping("/{id}/edit")
-	public ModelAndView editarTipoPlayer(@PathVariable("id") Integer id) {
-		TipoPlayer tp = service.procuraPorId(id);
-		ModelAndView mv = new ModelAndView("/tipos-players/add");
-		mv.addObject("tipoPlayer", tp);
+	public ModelAndView editarTipoMonitor(@PathVariable("id") Integer id) {
+		TipoMonitor tm = service.procuraPorId(id);
+		ModelAndView mv = new ModelAndView("/tipos-monitores/add");
+		mv.addObject("tipoMonitor", tm);
 		return mv;
 	}
 	
 	@PostMapping("/edit")
-	public String editarTipoPlayer(@Valid TipoPlayer tipoPlayer, BindingResult result, RedirectAttributes attr) {
+	public String editarTipoMonitor(@Valid TipoMonitor tipoMonitor, BindingResult result, RedirectAttributes attr) {
 		if(result.hasErrors()) {
-			return "/tipos-players/add";
+			return "/tipos-monitores/add";
 		}
-		service.salvar(tipoPlayer);
+		service.salvar(tipoMonitor);
 		attr.addFlashAttribute("success", "Tipo editado com sucesso!");
-		return "redirect:/tipos-players"; 
+		return "redirect:/tipos-monitores"; 
 	}
 	
 	@PostMapping("/delete") @ResponseBody
@@ -78,23 +78,5 @@ public class TipoPlayerController {
 		return new ResponseEntity<String>("{\"removido\": \"ok\"}",HttpStatus.OK);
 		
 	}
-	
 
-}
-
-/**
- * Classe auxiliar para receber a ID através de um POST
- */
-class IdRequest {
-	private String id;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	
 }

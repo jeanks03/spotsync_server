@@ -19,6 +19,13 @@ public class Monitor extends GenericEntity<Integer>{
 	@JoinColumn(name = "tipo_monitor_id")
 	private TipoMonitor tipoMonitor;
 	
+	@Column(name = "is_offine")
+	private boolean isOffline;
+	
+	@OneToOne
+	@JoinColumn(name = "player_id")
+	private Player player;
+	
 	@OneToOne
 	@JoinColumn(name = "local_id")
 	private Local local;
@@ -56,6 +63,16 @@ public class Monitor extends GenericEntity<Integer>{
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
+
+	public boolean isOffline() {
+		return isOffline;
+	}
+
+	public void setOffline(boolean isOffline) {
+		this.isOffline = isOffline;
+	}
+	
+	
 	
 	
 
